@@ -1,12 +1,32 @@
 # lucy
-**c**op**y** reddit image post **u**r**l**s to clipboard
+```
+copy Reddit image post urls to clipboard
 
-This is a bookmarklet written for reddit, to copy urls from image posts to the clipboard, so that they can be used in comments or anything else.
+c  y                   u l
+
+  \  \              /  /
+
+          l u c y
+```
+
+<br>
+
+This bookmarklet is written for **Reddit**, to capture and reformat urls from image posts, these reformatted urls are then copied to the clipboard and a 1 second overlay appears to confirm that the bookmarklet executed.
+
+After running the bookmarklet, use CTRL + V to paste the urls either in a comment, or anywhere else that you want.
+
+Single image posts are just the reformatted url.
+
+Gallery image posts will be formatted as a numbered list, with a number preceeding each url in the order that they appeared as images in the gallery.
+
+<hr>
 
 This is the current working bookmarklet:
 ```
 javascript:"use strict";void function(){javascript:(function(){function a(a){var b=a.match(c);return b%3F"https://i.redd.it/"+b[1]:null}function b(a){var b=document.createElement("div");b.style.cssText="\nposition: fixed;\ntop: 0;\nleft: 0;\nwidth: 100%25;\nheight: 100%25;\nbackground-color: rgba(0,0,0,0.5);\ncolor: white;\ndisplay: flex;\njustify-content: center;\nalign-items: center;\nz-index: 9999;\n",b.textContent=a,document.body.appendChild(b),setTimeout(function(){return document.body.removeChild(b)},1e3)}var c=/-(\w+\.[^%3F]*)/,d=[],e=document.querySelector("[id=\"post-image\"]");if(e)d.push(a(e.src));else{var f=document.querySelectorAll("gallery-carousel ul li > img");f.forEach(function(b,c){var e=b.src||b.getAttribute("data-lazy-src");e%26%26d.push(c+1+". "+a(e))})}var g=d.join("\n");if(navigator.clipboard%26%26window.isSecureContext)navigator.clipboard.writeText(g).then(function(){b("%23 image url/s copied to clipboard")});else{var h=document.createElement("textarea");h.value=g,document.body.appendChild(h),h.select(),document.execCommand("copy"),document.body.removeChild(h),b("%23 image url/s copied to clipboard")}})()}();
 ```
+
+<hr>
 
 This is the source code that it was created from:
 ```javascript
